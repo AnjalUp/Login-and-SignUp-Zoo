@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoo Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Zoo Vista" width="150" height="150">
+    <h1>ZooVista</h1>
+  </header>
+  <main>
+    <section id="animal-list">
+      <h2>Animals in the Zoo</h2>
+      <ul id="animals">
+        <!-- Animal entries will appear here -->
+      </ul>
+    </section>
+    <section id="add-animal">
+      <h2>Add a New Animal</h2>
+      <form id="animal-form">
+        <input type="text" id="animal-name" placeholder="Animal Name" required><br><br>
+        <input type="text" id="animal-species" placeholder="Species" required><br><br>
+        <input type="number" id="animal-age" placeholder="Age" required><br><br>
+        <button type="submit">Add Animal</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Zoo Management System</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
