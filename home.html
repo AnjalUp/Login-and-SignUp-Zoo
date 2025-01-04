@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoo Management System</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            margin-top: 1em;
+        }
+
+        nav button {
+            margin: 0.5em;
+            padding: 0.5em 1em;
+            cursor: pointer;
+            background-color: white;
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+            border-radius: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        form {
+            margin: 1em 0;
+        }
+
+        form input {
+            margin: 0.5em 0;
+            padding: 0.5em;
+            width: 80%;
+        }
+
+        form button {
+            padding: 0.5em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 0.5em 0;
+            padding: 0.5em;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        ul li button {
+            margin-left: 1em;
+            padding: 0.2em 0.5em;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Zoo Vista Management System</h1>
+        <nav>
+            <button onclick="showSection('animals')">Animals</button>
+            <button onclick="showSection('staff')">Staff</button>
+            <button onclick="showSection('visitors')">Visitors</button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="animals" class="hidden">
+            <h2>Animal Management</h2>
+            <form id="animalForm">
+                <input type="text" id="animalName" placeholder="Animal Name" required>
+                <input type="text" id="animalSpecies" placeholder="Species" required>
+                <button type="submit">Add Animal</button>
+            </form>
+            <ul id="animalList"></ul>
+        </section>
+
+        <section id="staff" class="hidden">
+            <h2>Staff Management</h2>
+            <form id="staffForm">
+                <input type="text" id="staffName" placeholder="Staff Name" required>
+                <input type="text" id="staffRole" placeholder="Role" required>
+                <button type="submit">Add Staff</button>
+            </form>
+            <ul id="staffList"></ul>
+        </section>
+
+        <section id="visitors" class="hidden">
+            <h2>Visitor Tracking</h2>
+            <form id="visitorForm">
+                <input type="text" id="visitorName" placeholder="Visitor Name" required>
+                <input type="text" id="visitReason" placeholder="Reason for Visit" required>
+                <button type="submit">Add Visitor</button>
+            </form>
+            <ul id="visitorList"></ul>
+        </section>
+    </main>
+
+    <script>
+        // JavaScript Code
+        function showSection(sectionId) {
+            document.querySelectorAll('main section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // Animal Management
+        document.getElementById('animalForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('animalName').value;
+            const species = document.getElementById('animalSpecies').value;
+            addListItem('animalList', `${name} (${species})`);
+            e.target.reset();
+        });
+
+        // Staff Management
+        document.getElementById('staffForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('staffName').value;
+            const role = document.getElementById('staffRole').value;
+            addListItem('staffList', `${name} - ${role}`);
+            e.target.reset();
+        });
+
+        // Visitor Management
+        document.getElementById('visitorForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('visitorName').value;
+            const reason = document.getElementById('visitReason').value;
+            addListItem('visitorList', `${name} - ${reason}`);
+            e.target.reset();
+        });
+
+        // Utility to Add List Item
+        function addListItem(listId, text) {
+            const list = document.getElementById(listId);
+            const listItem = document.createElement('li');
+            listItem.textContent = text;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => {
+                listItem.remove();
+            });
+
+            listItem.appendChild(deleteButton);
+            list.appendChild(listItem);
+        }
+    </script>
+</body>
+</html>
