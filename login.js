@@ -21,7 +21,7 @@ loginForm.addEventListener('submit', function (e) {
   const password = passwordInput.value;
 
   if (username === validUsername && password === validPassword) {
-    window.location.href = "index.html"; // Redirect to the main Zoo Management page
+    window.location.href = "Main.html"; // Redirect to the main Zoo Management page
   } else {
     errorMessage.classList.remove('hidden');
   }
